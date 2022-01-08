@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>1_类的基本知识</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /*
+            总结：
+                1.类中的构造器不是必须写的，要对实列进行一些初始化的操作，如添加指定的属性才写
+                2.如果A类继承了B类，且A类中写了构造器，那么A类构造器的super是必须要调用的
+                2.类中所定义的方法，都是放在类的原型对象上，供实列使用
+        */
+
+        class Person{
+            constructor(name,age){
+                this.name=name
+                this.age=age
+            }
+
+            speak(){
+                console.log(`我叫${this.name},我的年龄是${this.age}`)
+            }
+        }
+        
+        class Student extends Person{
+            constructor(name,age,grade){
+                super(name,age)
+                this.grade=grade
+            }
+            speak(){
+                console.log(`我叫${this.name},我的年龄是${this.age}，我的年级是${this.grade}`)
+            }
+            study(){
+                console.log(`我正在努力的学习！`)
+            }
+        }
+
+        const s1=new Student('小张',18,'高三')
+
+        console.log(s1)
+        s1.speak()
+        s1.study()
+    </script>
+</body>
+</html>
