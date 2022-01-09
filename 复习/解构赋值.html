@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //解构赋值的基本写法
+        // let obj={a:1,b:2,c:3}
+
+        // let arr=[2,4,6,8,10]
+        //传统写法
+        //const c=obj.c
+
+        //解构赋值写法
+        //const {c}=obj
+
+        //数组的解构赋值
+        //const [,,a]=arr //const c=arr[0]
+
+        /*********************************************************/
+        let obj = { a: 1, b: 2, c: { x: 1, y: 6, z: 7 } }
+        //正常解构赋值
+        //const {y} = obj.c //obj.c.y
+        //连续解构赋值
+        //const {c:{z}}=obj  //obj.c.y
+        //连续解构赋值+重命名
+        const {c:{z:value}}=obj 
+        console.log(value)
+    </script>
+</body>
+
+</html>

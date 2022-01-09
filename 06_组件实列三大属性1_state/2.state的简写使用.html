@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>1.state的基本使用</title>
+    <title>2.state的基本使用</title>
 </head>
 
 <body>
@@ -16,19 +16,15 @@
 
     <script type="text/babel">
         class Weather extends React.Component {
-            //构造器
-            constructor(props) {
-                super(props)
-                this.state = { isHot: false }
-                this.changeWeather=this.changeWeather.bind(this)
-            }
+
+            state = { isHot: false }
             //必须要写render
             render() {
                 // console.log(this)
                 //const { isHot } = this.state
                 return <h1 onClick={this.changeWeather}>今天天气真{this.state.isHot ? '炎热' : '凉爽'}</h1>
             }
-            changeWeather() {
+            changeWeather=()=> {
                 const ishot=this.state.isHot
                 this.setState({isHot:!ishot})
             }
