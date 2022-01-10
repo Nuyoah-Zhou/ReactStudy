@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3.回调ref中回调执行次数的问题</title>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+    <!-- react核心库 -->
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            state={isHot:false}
+            showMsg = () => {
+                const {input1} = this
+                console.log(this)
+                alert(input1.value)
+            }
+            Weatherchange = () => {
+                const {isHot}=this.state
+                this.setState({isHot:!isHot})
+            }
+            isSave=(c)=>{
+                this.input1 = c;
+                console.log("@",c)
+            }
+            render() {
+                const {isHot}=this.state
+                return (
+                    <div>
+                        <h2>今天天气真{isHot?"炎热":"严寒"}</h2>
+                        <input ref={this.isSave} type="text" placeholder="点击按钮提示数据" />&nbsp;
+                        <button onClick={this.showMsg}>点我提示左侧信息</button>&nbsp;
+                        <button onClick={this.Weatherchange}>点击变更天气</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById("test"))
+
+    </script>
+</body>
+
+</html>
