@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>2.回调函数的ref</title>
+    <title>4.createRef</title>
 </head>
 
 <body>
@@ -16,28 +16,22 @@
 
     <script type="text/babel">
         class Demo extends React.Component {
-            state={isHot:false}
+
+            myRef=React.createRef()
+            myRef2=React.createRef()
+
             showMsg = () => {
-                const { input1 } = this
-                console.log(this)
-                alert(input1.value)
-            }
-            Weatherchange = () => {
-                const {isHot}=this.state
-                this.setState({isHot:!isHot})
+                alert(this.myRef.current.value)
             }
             showMsg1 = () => {
-                const { input2 } = this
-                alert(input2.value)
+                alert(this.myRef2.current.value)
             }
             render() {
-                const {isHot}=this.state
                 return (
                     <div>
-                        <h2 onClick={this.Weatherchange}>今天天气真{isHot?"炎热":"严寒"}</h2>
-                        <input ref={(c) => { this.input1 = c ;console.log("@",c)}} type="text" placeholder="点击按钮提示数据" />&nbsp;
+                        <input ref={this.myRef} type="text" placeholder="点击按钮提示数据" />&nbsp;
                         <button onClick={this.showMsg}>点我提示左侧信息</button>&nbsp;
-                        <input ref={c => this.input2 = c} onBlur={this.showMsg1} type="text" placeholder="失去焦点提示数据" />
+                        <input ref={this.myRef2} onBlur={this.showMsg1} type="text" placeholder="失去焦点提示数据" />
                     </div>
                 )
             }

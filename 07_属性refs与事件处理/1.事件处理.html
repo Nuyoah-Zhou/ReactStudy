@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>1.字符串形式的ref</title>
+    <title>1.事件处理</title>
 </head>
 
 <body>
@@ -16,25 +16,28 @@
 
     <script type="text/babel">
         class Demo extends React.Component {
-            showMsg=()=>{
-                const {input1}=this.refs
-                alert(input1.value)
+
+            myRef=React.createRef()
+            myRef2=React.createRef()
+
+            showMsg = () => {
+                alert(this.myRef.current.value)
             }
-            showMsg1=()=>{
-                const {input2}=this.refs
-                alert(input2.value)
+            showMsg1 = (event) => {
+                console.log(event)
+                alert(event.target.value)
             }
-            render() {
+            render() {  
                 return (
                     <div>
-                        <input ref="input1" type="text" placeholder="点击按钮提示数据" />&nbsp;
+                        <input ref={this.myRef} type="text" placeholder="点击按钮提示数据" />&nbsp;
                         <button onClick={this.showMsg}>点我提示左侧信息</button>&nbsp;
-                        <input ref="input2" onBlur={this.showMsg1} type="text" placeholder="失去焦点提示数据" />
+                        <input onBlur={this.showMsg1} type="text" placeholder="失去焦点提示数据" />
                     </div>
                 )
             }
         }
-        ReactDOM.render(<Demo/>,document.getElementById("test"))
+        ReactDOM.render(<Demo />, document.getElementById("test"))
 
     </script>
 </body>
