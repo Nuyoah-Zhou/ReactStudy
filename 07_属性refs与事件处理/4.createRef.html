@@ -16,14 +16,23 @@
 
     <script type="text/babel">
         class Demo extends React.Component {
-
-            myRef=React.createRef()
-            myRef2=React.createRef()
+            /*
+            React的事件是通过onXxx属性指定时间处理函数
+                React使用的都是自定义的时间，而不是原生的事件
+                React中的事件是通过事件委托方式处理的
+            通过event.target得到发生事件的Dom元素对象
+        */
+            //通过API，创建React的容器，相当于对于回调函数创建了一个相应的API，省略了中间环节
+            //但是这个容器是专门专用的，所以每一个ref都需要创建这个
+            //官方提示我们不要过度的使用ref，如果发生时间的元素刚好是需要操作的元素，就可以使用事件去替代。
+            myRef = React.createRef()
+            myRef2 = React.createRef()
 
             showMsg = () => {
                 alert(this.myRef.current.value)
             }
             showMsg1 = () => {
+                console.log(this)
                 alert(this.myRef2.current.value)
             }
             render() {
